@@ -14,7 +14,7 @@ class Documents {
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GenerateValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
     /**
@@ -29,7 +29,7 @@ class Documents {
      */
     private $categorie;
     /**
-     * @ORM\Column(name="number", type="int", length=100)
+     * @ORM\Column(name="number", type="integer", length=100)
      * @Assert\NotBlank()
      */
     private $number;
