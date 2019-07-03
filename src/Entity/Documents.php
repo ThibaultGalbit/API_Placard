@@ -12,39 +12,41 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Documents {
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GenerateValue(strategy="AUTO")
      */
     private $id;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100)
      * @Assert\NotBlank()
      * 
      */
     private $name;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(name="categorie", type="string", length=100)
      * @Assert\NotBlank()
      */
     private $categorie;
     /**
-     * @ORM\Column(type="int", length=100)
+     * @ORM\Column(name="number", type="int", length=100)
      * @Assert\NotBlank()
      */
     private $number;
     /**
+     * @ORM\Column(name="userId")
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="Documents")
      */
     private $userId;
     /**
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime")
      */
     private $creationDate;
     /**
      * @Assert\DateTime()
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="updateDate", type="datetime")
+     * @ORM\Column(nullable=false)
      */
     private $updateDate;
     
@@ -90,11 +92,75 @@ class Documents {
     }
 
     /**
-     * @return mixed $description
+     * @return mixed $categorie
      */
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
-    }  
+    } 
+
+    /**
+     * @return mixed
+     */
+    public function getNumber()
+     {
+         return $this->number;
+     }
+
+     /**
+     * @return mixed $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @return mixed $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @return mixed $creationDate
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = new \DateTime();
+    }
+
+     /**
+     * @return mixed
+     */
+    public function getUpdateDate()
+    {
+        return $this->updateDate;
+    }
+
+      /**
+     * @return mixed $updateDate
+     */
+    public function setUpdateDate($updateDate)
+    {
+        $this->updateDate = new \DateTim();
+    }
 }
 ?>
