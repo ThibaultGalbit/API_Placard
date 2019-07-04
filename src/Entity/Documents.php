@@ -29,7 +29,7 @@ class Documents {
      */
     private $categorie;
     /**
-     * @ORM\Column(name="number", type="integer", length=100)
+     * @ORM\Column(name="number", type="int", length=100)
      * @Assert\NotBlank()
      */
     private $number;
