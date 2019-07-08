@@ -3,164 +3,140 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="documents")
+ * @ORM\Entity(repositoryClass="App\Repository\DocumentsRepository")
  */
-class Documents {
+class Documents
+{
     /**
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
-     * @ORM\Column(name="name", type="string", length=100)
-     * @Assert\NotBlank()
-     * 
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
+
     /**
-     * @ORM\Column(name="categorie", type="string", length=100)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255)
      */
     private $categorie;
+
     /**
-     * @ORM\Column(name="number", type="int", length=100)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="integer")
      */
     private $number;
+
     /**
-     * @ORM\Column(name="userId")
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="Documents")
+     * @ORM\Column(type="integer")
      */
     private $userId;
+
     /**
-     * @Assert\DateTime()
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(type="datetime")
      */
     private $creationDate;
+
     /**
-     * @Assert\DateTime()
-     * @ORM\Column(name="updateDate", type="datetime")
-     * @ORM\Column(nullable=false)
+     * @ORM\Column(type="datetime")
      */
     private $updateDate;
-    
+
     /**
-     * @return mixed
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    public function getId()
+    private $deletedDate;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed $id
-     */
-    public function setId($id)
+    public function getName(): ?string
     {
-        $this->id = $id;
+        return $this->name;
     }
 
-    /**
-     * @return mixed
-     */
-
-     public function getName()
-     {
-         return $this->name;
-     }
-
-     /**
-     * @return mixed $name
-     */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCategorie()
+    public function getCategorie(): ?string
     {
         return $this->categorie;
     }
 
-    /**
-     * @return mixed $categorie
-     */
-    public function setCategorie($categorie)
+    public function setCategorie(string $categorie): self
     {
         $this->categorie = $categorie;
-    } 
 
-    /**
-     * @return mixed
-     */
-    public function getNumber()
-     {
-         return $this->number;
-     }
-
-     /**
-     * @return mixed $number
-     */
-    public function setNumber($number)
-    {
-        $this->number = $number;
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserId()
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(int $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
     {
         return $this->userId;
     }
 
-    /**
-     * @return mixed $userId
-     */
-    public function setUserId($userId)
+    public function setUserId(int $userId): self
     {
         $this->userId = $userId;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreationDate()
+    public function getCreationDate(): ?\DateTimeInterface
     {
         return $this->creationDate;
     }
 
-    /**
-     * @return mixed $creationDate
-     */
-    public function setCreationDate($creationDate)
+    public function setCreationDate(\DateTimeInterface $creationDate): self
     {
-        $this->creationDate = new \DateTime();
+        $this->creationDate = $creationDate;
+
+        return $this;
     }
 
-     /**
-     * @return mixed
-     */
-    public function getUpdateDate()
+    public function getUpdateDate(): ?\DateTimeInterface
     {
         return $this->updateDate;
     }
 
-      /**
-     * @return mixed $updateDate
-     */
-    public function setUpdateDate($updateDate)
+    public function setUpdateDate(\DateTimeInterface $updateDate): self
     {
-        $this->updateDate = new \DateTim();
+        $this->updateDate = $updateDate;
+
+        return $this;
+    }
+
+    public function getDeletedDate(): ?\DateTimeInterface
+    {
+        return $this->deletedDate;
+    }
+
+    public function setDeletedDate(?\DateTimeInterface $deletedDate): self
+    {
+        $this->deletedDate = $deletedDate;
+
+        return $this;
     }
 }
-?>

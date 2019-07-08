@@ -1,3 +1,3 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+#app_documents_doc:
+#    path: /documents/doc
+#    controller: App\Controller\DocumentsController::doc

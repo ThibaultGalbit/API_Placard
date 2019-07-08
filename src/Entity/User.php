@@ -3,52 +3,38 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User {
+class User
+{
     /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     * 
-     */
-    private $name;
-    
 
     /**
-     * @return mixed
+     * @ORM\Column(type="string", length=255)
      */
-    public function getId()
+    private $name;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-
-     public function getName()
-     {
-         return $this->name;
-     }
-
-     /**
-     * @return mixed $name
-     */
-    public function setName($name)
+    public function getName(): ?string
     {
-        $this->name = $name;
+        return $this->name;
     }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
 }
-?>
