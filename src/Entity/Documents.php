@@ -32,7 +32,7 @@ class Documents
     private $number;
 
     /**
-     * @ORM\Column(type="integer")
+     * ORM\ManyToMany(targetEntity=User::class, inversedBy="Documents")
      */
     private $userId;
 

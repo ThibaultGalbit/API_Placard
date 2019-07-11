@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Documents;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class DocumentController extends AbstractController
 {
@@ -12,25 +15,20 @@ class DocumentController extends AbstractController
      */
     public function document()
     {
-        //$entityManager = $this->getDoctrine()->getManager();
+        $entityManager = $this->getDoctrine()->getManager();
 
-        //$document = new Documents();
-       // $document->setName('name1');
-       // $document->setCategorie('name1');
-       // $document->setNumber('name1');
-       // $document->setUserId('name1');
-       // $document->setCreationDate('name1');
-       // $document->setUpdateDate('name1');
+        $document = new Documents();
+        $document->setName('name1');
+        $document->setCategorie('name1');
+        $document->setNumber(45);
+        $document->setUserId(1);
+        $document->setCreationDate(new \DateTime);
+        $document->setUpdateDate(new \DateTime);
 
-        //$entityManager->persist($document);
-       // $entityManager->flush();
+        $entityManager->persist($document);
+        $entityManager->flush();
 
-        //return new Response('test ok '.$document->getId());
+       return $this->json($document);
 
-
-        return $this->json([
-         'message' => 'Welcome to your new controller!',
-         'path' => 'src/Controller/DocumentController.php',
-        ]);
     }
 }
