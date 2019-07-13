@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
-class Documents
+class Document
 {
     /**
      * @ORM\Id()
@@ -27,12 +27,12 @@ class Documents
     private $categorie;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $number;
 
     /**
-     * ORM\ManyToMany(targetEntity=User::class, inversedBy="Documents")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $userId;
 
@@ -85,7 +85,7 @@ class Documents
         return $this->number;
     }
 
-    public function setNumber(int $number): self
+    public function setNumber(?int $number): self
     {
         $this->number = $number;
 
@@ -97,7 +97,7 @@ class Documents
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId(?int $userId): self
     {
         $this->userId = $userId;
 
