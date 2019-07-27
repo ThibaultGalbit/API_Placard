@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DocumentTestRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MesDocsRepository")
  */
-class DocumentTest
+class MesDocs
 {
     /**
      * @ORM\Id()
@@ -32,8 +32,7 @@ class DocumentTest
     private $number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="document")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="mesDocs")
      */
     private $userId;
 

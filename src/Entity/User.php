@@ -24,14 +24,15 @@ class User
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DocumentTest", mappedBy="userId")
+     * @ORM\OneToMany(targetEntity="App\Entity\MesDocs", mappedBy="userId")
      */
-    private $document;
+    private $mesDocs;
 
     public function __construct()
     {
-        $this->document = new ArrayCollection();
+        $this->mesDocs = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -51,33 +52,34 @@ class User
     }
 
     /**
-     * @return Collection|DocumentTest[]
+     * @return Collection|MesDocs[]
      */
-    public function getDocument(): Collection
+    public function getMesDocs(): Collection
     {
-        return $this->document;
+        return $this->mesDocs;
     }
 
-    public function addDocument(DocumentTest $document): self
+    public function addMesDoc(MesDocs $mesDoc): self
     {
-        if (!$this->document->contains($document)) {
-            $this->document[] = $document;
-            $document->setUserId($this);
+        if (!$this->mesDocs->contains($mesDoc)) {
+            $this->mesDocs[] = $mesDoc;
+            $mesDoc->setUserId($this);
         }
 
         return $this;
     }
 
-    public function removeDocument(DocumentTest $document): self
+    public function removeMesDoc(MesDocs $mesDoc): self
     {
-        if ($this->document->contains($document)) {
-            $this->document->removeElement($document);
+        if ($this->mesDocs->contains($mesDoc)) {
+            $this->mesDocs->removeElement($mesDoc);
             // set the owning side to null (unless already changed)
-            if ($document->getUserId() === $this) {
-                $document->setUserId(null);
+            if ($mesDoc->getUserId() === $this) {
+                $mesDoc->setUserId(null);
             }
         }
 
         return $this;
     }
+
 }
