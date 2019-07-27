@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190714161338 extends AbstractMigration
+final class Version20190727171430 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -24,6 +24,7 @@ final class Version20190714161338 extends AbstractMigration
 
         $this->addSql('CREATE TABLE mes_docs (id INT AUTO_INCREMENT NOT NULL, user_id_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, categorie VARCHAR(255) NOT NULL, number INT NOT NULL, creation_date DATETIME NOT NULL, update_date DATETIME NOT NULL, deleted_date DATETIME DEFAULT NULL, INDEX IDX_B0A4DA9F9D86650F (user_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE mes_docs ADD CONSTRAINT FK_B0A4DA9F9D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
+        $this->addSql('DROP TABLE document_test');
     }
 
     public function down(Schema $schema) : void
@@ -31,6 +32,8 @@ final class Version20190714161338 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
+        $this->addSql('CREATE TABLE document_test (id INT AUTO_INCREMENT NOT NULL, user_id_id INT NOT NULL, name VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, categorie VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, number INT NOT NULL, creation_date DATETIME NOT NULL, update_date DATETIME NOT NULL, deleted_date DATETIME DEFAULT NULL, INDEX IDX_7FCBF29F9D86650F (user_id_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB COMMENT = \'\' ');
+        $this->addSql('ALTER TABLE document_test ADD CONSTRAINT FK_7FCBF29F9D86650F FOREIGN KEY (user_id_id) REFERENCES user (id)');
         $this->addSql('DROP TABLE mes_docs');
     }
 }

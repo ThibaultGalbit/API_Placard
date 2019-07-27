@@ -19,8 +19,8 @@ class UserController extends AbstractController
         $user = new User();
         $user->setName('Thibault');
 
-        $entityManager->persist($user);
-        $entityManager->flush();
+       // $entityManager->persist($user);
+       // $entityManager->flush();
 
         return $this->json($user);
 
