@@ -15,17 +15,20 @@ class DocController extends AbstractController
     public function doc()
     {
 
+        $entityManager = $this->getDoctrine()->getManager();
+
         $document = new MesDocs();
-        $document = setName("test");
-        $document = setCategorie("test");
-        $document = setNumber(2);
-        $document = setUserId(1);
-        $document = setCreationDate(new \DateTime);
-        $document = setUpdateDate(new \DateTime);
-        
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/DocController.php',
-        ]);
+        $document->setName("test");
+        $document->setCategorie("test");
+        $document->setNumber(2);
+        $document->setUserId(null);
+        $document->setCreationDate(new \DateTime);
+        $document->setUpdateDate(new \DateTime);
+
+       // $entityManager->persist($document);
+       // $entityManager->flush();
+ 
+  
+        return $this->json($document);
     }
 }
